@@ -2,24 +2,21 @@
 
 A more friendly CloudFormation JSON and YAML Validator
 
-`cfn-lint` is a tool used to improve your CloudFormation development cycle. If you are here, you are probably
-fed up of waiting for 10 minutes or more before CloudFormation gives you an error due to a typo. This tool aims to 
-remove that waste of time. The tool takes the CloudFormation template, and resolves all the Intrinsic functions 
-defined before checking the Properties of Resources defined. 
+`cfn-lint` is used to improve CloudFormation development cycle. Using CloudFormation is inefficient as it cannot detect typos while developing. This tool makes CloudFormation efficient by taking the CloudFormation template, and resolving the Intrinsic functions defined before checking the Properties of Resources defined. 
 
-The tool can be used over the commandline using `cfn-lint`, or can be used as a module within another JavaScript application.
+The tool can be used over the commandline using `cfn-lint`, or as a module within another JavaScript application.
 
 *Note: This tool is currently case-sensitive in relation to AWS CloudFormation types, for example aws::lambda::function != AWS::Lambda::Function.*
 
 ## Installation
 
-You can install with `npm`:
+Install with `npm`:
 
 ```
 $ npm install -g cfn-lint
 ```
 
-If you get `/usr/bin/env: 'node': No such file or directory` ensure your system has NodeJs installed. On Debian systems you may need to symlink node to nodejs due to namespacing issues (`ln -s /usr/bin/nodejs /usr/bin/node`).
+If you get `/usr/bin/env: 'node': No such file or directory`, ensure your system has NodeJs installed. On Debian systems you may need to symlink node to nodejs due to namespacing issues (`ln -s /usr/bin/nodejs /usr/bin/node`).
 
 
 ## How to use?
@@ -179,21 +176,17 @@ Represents the result of a validation.
 
 ## Deploying your template
 
-CloudFormation tends to involve a bit of trail and error. To enable quick development, 
-the following method can be used to prevent the annoying 'ROLLBACK' scenarios where the whole stack
-must be deleted and recreated.
+CloudFormation tends to involve a bit of trail and error. Quick development can be enabled by preventing the 'ROLLBACK' scenarios where the whole stack must be deleted and recreated. The method is as follows: 
 
-Deploy a template with the following content, name it what you want your final stack to be called.
+Deploy and name a template with the following content,
+
 ```yaml
 Resources:
   MyBucket:
     Type: AWS::S3::Bucket
 ```
 
-After each change to your template, simply update the stack you just created. If the stack failed to deploy
-for some reason you can perform an 'Update Stack' operation, without needing to delete and recreate
-the stack from scratch. You can also use this method to keep parameters populated during the development 
-phase. This method will work using the AWS Console or the CLI tools.
+After each change to the template, update the stack created. If the stack failed to deploy, an 'Update Stack' operation can be peformed, without deleting and recreating the stack from scratch. One can also use this method to keep parameters populated during the development phase. This method will work using the AWS Console or the CLI tools.
 
 
 ## FAQ
